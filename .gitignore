@@ -1,0 +1,5 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/vrbit.wsapi.ticket/.vs/vrbit.wsapi.ticket/v15/Server/sqlite3/db.lock
