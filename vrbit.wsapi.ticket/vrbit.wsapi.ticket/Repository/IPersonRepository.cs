@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using vrbit.wsapi.ticket.Model;
 
-namespace vrbit.wsapi.ticket.Services
+namespace vrbit.wsapi.ticket.Repository
 {
-    public interface IPersonService
+    public interface IPersonRepository
     {
         Person Create(Person person);
         Person FindById(long id);

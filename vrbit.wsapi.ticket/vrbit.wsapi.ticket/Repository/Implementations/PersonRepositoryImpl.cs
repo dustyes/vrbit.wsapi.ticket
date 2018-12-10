@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using vrbit.wsapi.ticket.Model;
+using vrbit.wsapi.ticket.Repository;
 
-namespace vrbit.wsapi.ticket.Services.Implementations
+namespace vrbit.wsapi.ticket.Business.Implementations
 {
-    public class PersonServiceImpl : IPersonService
+    public class PersonRepositoryImpl : IPersonRepository
     {
 
         private TicketContext _ticketContext;
 
-        public PersonServiceImpl(TicketContext context)
+        public PersonRepositoryImpl(TicketContext context)
         {
             _ticketContext = context;
         }

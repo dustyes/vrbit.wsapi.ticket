@@ -12,8 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using vrbit.wsapi.ticket.Model;
-using vrbit.wsapi.ticket.Services;
-using vrbit.wsapi.ticket.Services.Implementations;
+using vrbit.wsapi.ticket.Business;
+using vrbit.wsapi.ticket.Business.Implementations;
+using vrbit.wsapi.ticket.Repository;
 
 namespace vrbit.wsapi.ticket
 {
@@ -32,7 +33,8 @@ namespace vrbit.wsapi.ticket
             var connection = Configuration["TicketConnection:ConnectionString"];
             services.AddDbContext<TicketContext>(options => options.UseSqlServer(connection));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddScoped<IPersonService, PersonServiceImpl>();
+            services.AddScoped<IPersonBusiness, PersonBusinessImpl>();
+            services.AddScoped<IPersonRepository, PersonRepositoryImpl>();
             services.AddApiVersioning();
         }
 
