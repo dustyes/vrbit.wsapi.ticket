@@ -16,5 +16,6 @@ namespace vrbit.wsapi.ticket.Model
         public TicketContext(DbContextOptions<TicketContext> options) : base(options) { }
 
         public DbSet<Person> Persons { get; set; }
+        public DbSet<Book> Books { get; set; }
     }
 }

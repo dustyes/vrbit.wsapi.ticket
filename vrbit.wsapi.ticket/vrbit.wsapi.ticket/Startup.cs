@@ -15,6 +15,7 @@ using vrbit.wsapi.ticket.Model;
 using vrbit.wsapi.ticket.Business;
 using vrbit.wsapi.ticket.Business.Implementations;
 using vrbit.wsapi.ticket.Repository;
+using vrbit.wsapi.ticket.Repository.Implementations;
 
 namespace vrbit.wsapi.ticket
 {
@@ -35,6 +36,11 @@ namespace vrbit.wsapi.ticket
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddScoped<IPersonBusiness, PersonBusinessImpl>();
             services.AddScoped<IPersonRepository, PersonRepositoryImpl>();
+
+            services.AddScoped<IBookBusiness, BookBusinessImpl>();
+
+
+            services.AddScoped(typeof(IRepository<>), typeof(RepositoryImpl<>));
             services.AddApiVersioning();
         }
 
