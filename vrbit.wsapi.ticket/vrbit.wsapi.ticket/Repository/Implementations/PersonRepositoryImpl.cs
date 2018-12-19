@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using vrbit.wsapi.ticket.Model;
 using vrbit.wsapi.ticket.Repository;
 
@@ -68,9 +67,6 @@ namespace vrbit.wsapi.ticket.Business.Implementations
 
         public Person Update(Person person)
         {
-            if (person.Id == null)
-                return null;
-
             var personcheck = FindById((int)person.Id);
 
             if (personcheck == null)

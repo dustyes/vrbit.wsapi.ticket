@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using vrbit.wsapi.ticket.Data.ConvertersImpl;
+using vrbit.wsapi.ticket.Data.VO;
 using vrbit.wsapi.ticket.Model;
 using vrbit.wsapi.ticket.Repository;
 
@@ -10,15 +12,20 @@ namespace vrbit.wsapi.ticket.Business.Implementations
     public class BookBusinessImpl : IBookBusiness
     {
         private IRepository<Book> _ticketRepository;
+        private readonly BookConverter _converter;
 
         public BookBusinessImpl(IRepository<Book> repository)
         {
             _ticketRepository = repository;
+            _converter = new BookConverter();
         }
 
-        public Book Create(Book book)
+        public BookVO Create(BookVO book)
         {
-            return _ticketRepository.Create(book);
+            var bookEntity = _converter.Parse(book);
+            bookEntity = _ticketRepository.Create(bookEntity);
+
+            return _converter.Parse(bookEntity);
         }
 
         public void Delete(long id)
@@ -26,22 +33,22 @@ namespace vrbit.wsapi.ticket.Business.Implementations
             _ticketRepository.Delete(id);
         }
 
-        public List<Book> FindAll()
+        public List<BookVO> FindAll()
         {
-            return _ticketRepository.FindAll();
+            return _converter.ParseList(_ticketRepository.FindAll());
         }
 
-        public Book FindById(long id)
+        public BookVO FindById(long id)
         {
-            return _ticketRepository.FindById(id);
+            return _converter.Parse(_ticketRepository.FindById(id));
         }
 
-        public Book Update(Book book)
+        public BookVO Update(BookVO book)
         {
-            if (book == null)
-                return null;
+            var bookEntity = _converter.Parse(book);
+            bookEntity = _ticketRepository.Update(bookEntity);
 
-            return _ticketRepository.Update(book);
+            return _converter.Parse(bookEntity);
         }
     }
 }

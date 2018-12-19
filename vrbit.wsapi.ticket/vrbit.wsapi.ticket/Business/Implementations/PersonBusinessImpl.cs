@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using vrbit.wsapi.ticket.Data.ConvertersImpl;
+using vrbit.wsapi.ticket.Data.VO;
 using vrbit.wsapi.ticket.Model;
 using vrbit.wsapi.ticket.Repository;
 
@@ -10,16 +12,22 @@ namespace vrbit.wsapi.ticket.Business.Implementations
     public class PersonBusinessImpl : IPersonBusiness
     {
 
-        private IPersonRepository _ticketRepository;
+        private IRepository<Person> _ticketRepository;
 
-        public PersonBusinessImpl(IPersonRepository repository)
+        private readonly PersonConverter _converter;
+
+        public PersonBusinessImpl(IRepository<Person> repository)
         {
             _ticketRepository = repository;
+            _converter = new PersonConverter();
         }
 
-        public Person Create(Person person)
+        public PersonVO Create(PersonVO person)
         {
-            return _ticketRepository.Create(person);
+            var personEntity = _converter.Parse(person);
+            personEntity = _ticketRepository.Create(personEntity);
+
+            return _converter.Parse(personEntity);
         }
 
         public void Delete(long id)
@@ -27,19 +35,22 @@ namespace vrbit.wsapi.ticket.Business.Implementations
             _ticketRepository.Delete(id);
         }
 
-        public List<Person> FindAll()
+        public List<PersonVO> FindAll()
         {
-            return _ticketRepository.FindAll();
+            return _converter.ParseList(_ticketRepository.FindAll());
         }
 
-        public Person FindById(long id)
+        public PersonVO FindById(long id)
         {
-            return _ticketRepository.FindById(id);
+            return _converter.Parse(_ticketRepository.FindById(id));
         }
 
-        public Person Update(Person person)
+        public PersonVO Update(PersonVO person)
         {
-            return _ticketRepository.Update(person);
+            var personEntity = _converter.Parse(person);
+            personEntity = _ticketRepository.Update(personEntity);
+
+            return _converter.Parse(personEntity);
         }
     }
 }

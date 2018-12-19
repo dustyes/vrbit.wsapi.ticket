@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using vrbit.wsapi.ticket.Model;
 using vrbit.wsapi.ticket.Business;
+using vrbit.wsapi.ticket.Data.VO;
 
 namespace vrbit.wsapi.ticket.Controllers
 {
@@ -45,7 +46,7 @@ namespace vrbit.wsapi.ticket.Controllers
 
         // POST api/values
         [HttpPost]
-        public ActionResult Post([FromBody] Person person)
+        public ActionResult Post([FromBody] PersonVO person)
         {
             if (person == null)
                 return BadRequest();
@@ -55,7 +56,7 @@ namespace vrbit.wsapi.ticket.Controllers
 
         // PUT api/values/5
         [HttpPut]
-        public ActionResult Put([FromBody] Person person)
+        public ActionResult Put([FromBody] PersonVO person)
         {
             if (person.Id == null)
                 return BadRequest();

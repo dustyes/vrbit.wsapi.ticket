@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using vrbit.wsapi.ticket.Business;
+using vrbit.wsapi.ticket.Data.VO;
 using vrbit.wsapi.ticket.Model;
 
 namespace vrbit.wsapi.ticket.Controllers
@@ -40,7 +41,7 @@ namespace vrbit.wsapi.ticket.Controllers
 
         // POST api/values
         [HttpPost]
-        public ActionResult Post([FromBody] Book book)
+        public ActionResult Post([FromBody] BookVO book)
         {
             if (book == null)
                 return BadRequest();
@@ -50,7 +51,7 @@ namespace vrbit.wsapi.ticket.Controllers
 
         // PUT api/values/5
         [HttpPut]
-        public ActionResult Put([FromBody] Book book)
+        public ActionResult Put([FromBody] BookVO book)
         {
             var bookUpdate = new ObjectResult(_bookBusiness.Update(book));
 
