@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using vrbit.wsapi.ticket.Model;
 using vrbit.wsapi.ticket.Business;
 using vrbit.wsapi.ticket.Data.VO;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using Swashbuckle.AspNetCore.Annotations;
+using Microsoft.AspNetCore.Authorization;
 
 namespace vrbit.wsapi.ticket.Controllers
 {
@@ -25,6 +28,11 @@ namespace vrbit.wsapi.ticket.Controllers
 
         // GET api/values
         [HttpGet]
+        [SwaggerResponse(200, Type = typeof(List<PersonVO>))]
+        [SwaggerResponse(204)]
+        [SwaggerResponse(400)]
+        [SwaggerResponse(401)]
+        [Authorize("Bearer")]
         public ActionResult<IEnumerable<string>> Get()
         {
             return Ok(_personBusiness.FindAll());
@@ -32,6 +40,11 @@ namespace vrbit.wsapi.ticket.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
+        [SwaggerResponse(200, Type = typeof(PersonVO))]
+        [SwaggerResponse(204)]
+        [SwaggerResponse(400)]
+        [SwaggerResponse(401)]
+        [Authorize("Bearer")]
         public ActionResult<string> Get(int id)
         {
             var person = _personBusiness.FindById(id);
@@ -46,6 +59,10 @@ namespace vrbit.wsapi.ticket.Controllers
 
         // POST api/values
         [HttpPost]
+        [SwaggerResponse(201, Type = typeof(List<PersonVO>))]
+        [SwaggerResponse(400)]
+        [SwaggerResponse(401)]
+        [Authorize("Bearer")]
         public ActionResult Post([FromBody] PersonVO person)
         {
             if (person == null)
@@ -56,6 +73,10 @@ namespace vrbit.wsapi.ticket.Controllers
 
         // PUT api/values/5
         [HttpPut]
+        [SwaggerResponse(202, Type = typeof(List<PersonVO>))]
+        [SwaggerResponse(400)]
+        [SwaggerResponse(401)]
+        [Authorize("Bearer")]
         public ActionResult Put([FromBody] PersonVO person)
         {
             if (person.Id == null)
@@ -66,6 +87,10 @@ namespace vrbit.wsapi.ticket.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
+        [SwaggerResponse(204)]
+        [SwaggerResponse(400)]
+        [SwaggerResponse(401)]
+        [Authorize("Bearer")]
         public ActionResult Delete(int id)
         {
             _personBusiness.Delete(id);

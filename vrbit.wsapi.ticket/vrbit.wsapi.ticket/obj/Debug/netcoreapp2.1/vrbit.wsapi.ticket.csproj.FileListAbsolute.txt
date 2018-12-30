@@ -11,3 +11,4 @@ C:\Projetos\masterticket\vrbit.wsapi.ticket\vrbit.wsapi.ticket\vrbit.wsapi.ticke
 C:\Projetos\masterticket\vrbit.wsapi.ticket\vrbit.wsapi.ticket\vrbit.wsapi.ticket\obj\Debug\netcoreapp2.1\vrbit.wsapi.ticket.RazorTargetAssemblyInfo.cache
 C:\Projetos\masterticket\vrbit.wsapi.ticket\vrbit.wsapi.ticket\vrbit.wsapi.ticket\obj\Debug\netcoreapp2.1\vrbit.wsapi.ticket.dll
 C:\Projetos\masterticket\vrbit.wsapi.ticket\vrbit.wsapi.ticket\vrbit.wsapi.ticket\obj\Debug\netcoreapp2.1\vrbit.wsapi.ticket.pdb
+C:\Projetos\masterticket\vrbit.wsapi.ticket\vrbit.wsapi.ticket\vrbit.wsapi.ticket\obj\Debug\netcoreapp2.1\vrbit.wsapi.ticket.csprojAssemblyReference.cache
